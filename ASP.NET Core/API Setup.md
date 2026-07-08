@@ -205,3 +205,34 @@ API
 - Return proper HTTP status codes.
 - Use Swagger during development.
 - Store configuration in appsettings.json.
+
+
+## Mit Abfrage
+
+```csharp
+[HttpGet]
+public async Task<IActionResult> Get(bool? isDone, string? search)
+{
+    var todos = await _todoService.GetAll(isDone, search);
+    return Ok(todos);
+}
+```
+
+```csharp
+public async Task<List<TodoItem>> GetAll(bool? isDone, string? search)
+{
+    var query = _context.Todos.AsQueryable();
+
+    if (isDone.HasValue)
+    {
+        query = query.Where(todo  => todo.IsDone == isDone.Value);
+    }
+
+    if (!string.IsNullOrWhiteSpace(search))
+    {
+        query = query.Where(todo => todo.Title.Contains(search));
+    }
+
+    return await query.ToListAsync();
+}   
+ ```
