@@ -299,3 +299,111 @@ Usage:
 ```xml
 <Button Background="{StaticResource PrimaryBrush}" Content="Save"/>
 ```
+
+---
+---
+
+
+# WPF Data Binding
+
+## Binding Modes
+
+Binding modes define the direction in which data is synchronized between the View and the ViewModel.
+
+---
+
+### OneWay
+
+```xml
+<TextBox Text="{Binding Name, Mode=OneWay}" />
+```
+
+Data flows from:
+
+```text
+ViewModel → UI
+```
+
+When the property changes in the ViewModel, the UI updates automatically.
+
+Changes made by the user in the UI are not written back to the ViewModel.
+
+---
+
+### TwoWay
+
+```xml
+<TextBox Text="{Binding Name, Mode=TwoWay}" />
+```
+
+Data flows in both directions:
+
+```text
+ViewModel ↔ UI
+```
+
+When the ViewModel changes, the UI updates.
+
+When the user edits the value in the UI, the ViewModel is updated as well.
+
+This is the most common mode for input controls such as:
+
+- TextBox
+- ComboBox
+- CheckBox
+
+---
+
+## UpdateSourceTrigger
+
+`UpdateSourceTrigger` defines when changes made in the UI are transferred back to the ViewModel.
+
+
+
+### LostFocus (Default)
+
+```xml
+<TextBox Text="{Binding Name}" />
+```
+
+Default behavior for a TextBox:
+
+```text
+User types text
+        ↓
+Value remains in TextBox
+        ↓
+TextBox loses focus
+        ↓
+ViewModel is updated
+```
+
+---
+
+### PropertyChanged
+
+```xml
+<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+```
+
+Behavior:
+
+```text
+User presses a key
+        ↓
+ViewModel is updated immediately
+```
+
+Example:
+
+```text
+F
+Fa
+Fab
+Fabi
+Fabia
+Fabian
+```
+
+Each keystroke immediately updates the bound property.
+
