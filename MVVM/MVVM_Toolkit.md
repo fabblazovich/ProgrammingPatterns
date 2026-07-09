@@ -19,6 +19,7 @@ public partial class MainWindowViewModel : ObservableObject
 ```
 
 ---
+---
 
 ## ObservableProperty
 
@@ -43,6 +44,7 @@ Usage:
 <TextBox Text="{Binding Name}" />
 ```
 
+---
 ---
 
 ## RelayCommand
@@ -71,6 +73,7 @@ Usage:
 ```
 
 ---
+---
 
 # Data Binding
 
@@ -89,6 +92,7 @@ private string name = string.Empty;
 
 Whenever `Name` changes, the UI updates automatically.
 
+---
 ---
 
 # ObservableCollection
@@ -117,6 +121,7 @@ Names.Add("Fabian");
 The ListBox updates automatically.
 
 ---
+---
 
 # SelectedItem
 
@@ -142,6 +147,7 @@ Display selected item:
 <Label Content="{Binding SelectedName}" />
 ```
 
+---
 ---
 
 # Commands
@@ -170,6 +176,7 @@ private void Save()
 ```
 
 ---
+---
 
 # CurrentView Navigation
 
@@ -193,6 +200,7 @@ View:
 ```
 
 ---
+---
 
 # MVVM Workflow
 
@@ -208,6 +216,7 @@ Property / Command
 UI updates automatically
 ```
 
+---
 ---
 
 # Typical MVVM Structure
@@ -227,4 +236,66 @@ Project
 │   └── Material.cs
 │
 └── Services
+```
+
+---
+---
+
+
+# Application Resources
+
+Application Resources provide a central location for managing colors, brushes, styles and templates across the entire WPF application.
+
+## Benefits
+
+- Consistent UI design
+- Easier maintenance
+- Reduced duplicate XAML code
+- Centralized color management
+- Easy theme changes
+
+---
+
+## App.xaml
+
+```xml
+<Application.Resources>
+
+    <SolidColorBrush x:Key="HeaderBackgroundColor" Color="Green"/>
+
+</Application.Resources>
+```
+
+---
+
+## Usage
+
+Use the resource anywhere in the application.
+
+```xml
+<Border Background="{StaticResource HeaderBackgroundColor}">
+    <TextBlock Text="Header"/>
+</Border>
+```
+
+---
+
+## Define Multiple Colors
+
+```xml
+<Application.Resources>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#4CAF50"/>
+
+    <SolidColorBrush x:Key="SecondaryBrush" Color="#2196F3"/>
+
+    <SolidColorBrush x:Key="WarningBrush" Color="#FF9800"/>
+
+</Application.Resources>
+```
+
+Usage:
+
+```xml
+<Button Background="{StaticResource PrimaryBrush}" Content="Save"/>
 ```
