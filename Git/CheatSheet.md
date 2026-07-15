@@ -238,3 +238,35 @@ git push
 - API-Keys
 - Zugangsdaten
 - lokale Konfigurationsdateien
+
+---
+
+
+## Git UI direkt aus dem Terminal
+
+Git bringt einige grafische Werkzeuge mit, die direkt über das Terminal gestartet werden können. Diese Tools erleichtern die Arbeit mit Commits, Branches und der Historie.
+
+### Git GUI
+
+Startet die klassische Git-Oberfläche:
+
+```bash
+git gui
+```
+
+### Funktionen
+
+- Änderungen anzeigen
+- Dateien stagen und unstagen
+- Commit erstellen
+- Branches verwalten
+- Repository klonen oder erstellen
+
+### Typischer Workflow
+
+1. Dateien ändern
+2. `git gui` starten
+3. Änderungen prüfen
+4. Dateien stagen
+5. Commit-Nachricht eingeben
+6. Commit erstellen
