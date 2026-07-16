@@ -270,3 +270,56 @@ git gui
 4. Dateien stagen
 5. Commit-Nachricht eingeben
 6. Commit erstellen
+
+---
+
+## Commit-Historie mit Interactive Rebase bereinigen
+
+Um vor einem Merge Request eine saubere und übersichtliche Commit-Historie zu erstellen, können mehrere zusammengehörende Commits mit einem **Interactive Rebase** zusammengeführt werden.
+
+### Interactive Rebase starten
+
+```bash
+git rebase origin/master -i
+```
+
+Dadurch öffnet Git einen Editor mit allen Commits des aktuellen Branches, die noch nicht in `origin/master` enthalten sind.
+
+### Commits zusammenführen
+
+Beispiel:
+
+```text
+pick a1b2c3 feat: implement validation for material creation
+pick d4e5f6 refactor: improve layout structure and formatting
+pick g7h8i9 refactor: remove manual input validation
+```
+
+Da alle drei Commits dieselbe Funktionalität betreffen, können sie zu einem Commit zusammengeführt werden:
+
+```text
+pick a1b2c3 feat: implement validation for material creation
+fixup d4e5f6 refactor: improve layout structure and formatting
+squash g7h8i9 refactor: remove manual input validation
+```
+
+### Bedeutung der Optionen
+
+| Option | Beschreibung |
+|----------|-------------|
+| `pick` | Commit unverändert übernehmen |
+| `squash` | Commit mit dem vorherigen Commit zusammenführen und Commit-Message bearbeiten |
+| `fixup` | Commit mit dem vorherigen Commit zusammenführen und dessen Commit-Message verwerfen |
+| `drop` | Commit entfernen |
+
+### Commit-Message anpassen
+
+Nach dem Speichern öffnet Git einen weiteren Editor, in dem die finale Commit-Message festgelegt werden kann.
+
+Beispiel:
+
+```text
+feat: implement validation for material creation
+
+Add ObservableValidator-based validation for material creation,
+integrate validation feedback into the UI, remove legacy validation
